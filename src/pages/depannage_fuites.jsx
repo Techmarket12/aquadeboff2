@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getServiceLink } from '../utils/serviceRoutes';
 import {
@@ -51,7 +51,7 @@ const BRAND = {
   phoneLink: 'tel:0493415283',
   email: 'aquadeb22@gmail.com',
   logoUrl:
-    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=fxUdz8CZDwIQ7kNvwFPE_mG&_nc_oc=AdmHXiZb_JPA4yegaOUXndoZ-eflzFNBiB-aRRMWSLmrOaDIiir48tn-cViJMfAbNEY&_nc_zt=24&_nc_ht=scontent-lga3-3.xx&_nc_gid=9JrntzsW-6BdH6ZD_wi9dA&oh=00_AfngjZ802_se1bD5T_Kna3ZxygdW341dHZwuMWQydKYtnw&oe=6947583C'
+    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png'
 };
 
 const NAV_LINKS = [
@@ -218,6 +218,12 @@ const AiDiagnosticModal = ({ isOpen, onClose }) => {
 
 export default function DepannageFuitesPage() {
   const navigate = useNavigate();
+  const primarySectionVideoSrc =
+    'https://res.cloudinary.com/dw9jkwccj/video/upload/q_auto:eco,f_mp4,vc_h264,w_960/v1770972332/251C49AE-D4FB-4FF7-B142-C390B6E52ABC_gd6vcl.mp4';
+  const fallbackSectionVideoSrc =
+    'https://res.cloudinary.com/dw9jkwccj/video/upload/v1770972332/251C49AE-D4FB-4FF7-B142-C390B6E52ABC_gd6vcl.mp4';
+  const leakSectionRef = useRef(null);
+  const leakVideoRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -227,6 +233,71 @@ export default function DepannageFuitesPage() {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Ensure autoplay works on mobile when the section is visible
+  useEffect(() => {
+    const playIfPossible = (vid) => {
+      if (!vid) return;
+      vid.muted = true;
+      vid.defaultMuted = true;
+      vid.playsInline = true;
+      const playPromise = vid.play();
+      if (playPromise?.catch) playPromise.catch(() => {});
+    };
+
+    const isSectionVisible = () => {
+      const el = leakSectionRef.current;
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+    };
+
+    const triggerPlayIfVisible = () => {
+      if (isSectionVisible()) playIfPossible(leakVideoRef.current);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) triggerPlayIfVisible();
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    if (leakSectionRef.current) observer.observe(leakSectionRef.current);
+
+    // Fallback for browsers requiring a user gesture (mobile Safari)
+    const gestureHandler = () => triggerPlayIfVisible();
+    window.addEventListener('touchstart', gestureHandler, { once: true });
+    window.addEventListener('click', gestureHandler, { once: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('touchstart', gestureHandler);
+      window.removeEventListener('click', gestureHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const vid = leakVideoRef.current;
+            if (vid) {
+              const playPromise = vid.play();
+              if (playPromise?.catch) playPromise.catch(() => {});
+            }
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    if (leakSectionRef.current) observer.observe(leakSectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -268,11 +339,11 @@ export default function DepannageFuitesPage() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative">
-              <div className="absolute inset-0 bg-blue-500 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="absolute inset-0 bg-blue-500 rounded-lg blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
               <img
                 src={BRAND.logoUrl}
                 alt="Aqua&Deb Logo"
-                className="relative h-12 w-12 md:h-14 md:w-14 rounded-full object-cover border-2 border-white shadow-md"
+                className="relative h-12 w-12 md:h-14 md:w-14 object-contain"
               />
             </div>
             <div className="flex flex-col">
@@ -615,7 +686,7 @@ export default function DepannageFuitesPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-slate-50">
+        <section className="py-20 bg-slate-50" ref={leakSectionRef}>
           <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-6">
@@ -646,10 +717,29 @@ export default function DepannageFuitesPage() {
               </ul>
             </div>
             <div className="relative flex justify-center">
-              <img
-                src="https://res.cloudinary.com/dw9jkwccj/image/upload/v1766142107/reparation-tuyauterie-avant-apres_xq3gnb.png"
-                alt="Réparation fuite canalisation"
+              <video
+                ref={leakVideoRef}
                 className="rounded-2xl shadow-2xl w-full max-w-xl object-cover object-center mx-auto"
+                controls
+                muted
+                defaultMuted
+                autoPlay
+                loop
+                playsInline
+                preload="auto"
+                crossOrigin="anonymous"
+                src={primarySectionVideoSrc}
+                onError={(e) => {
+                  const vid = e.currentTarget;
+                  if (vid.dataset.fallbackApplied) return;
+                  vid.dataset.fallbackApplied = '1';
+                  vid.src = fallbackSectionVideoSrc;
+                  vid.load();
+                }}
+                onStalled={(e) => {
+                  const vid = e.currentTarget;
+                  vid.load();
+                }}
               />
             </div>
           </div>
@@ -816,76 +906,94 @@ export default function DepannageFuitesPage() {
           </a>
         </section>
 
-        <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t-4 border-orange-600">
-          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">            <div>
+                <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t-4 border-orange-600">
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+
+            <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
                 <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
               </div>
-              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
-                À propos de nous
-              </h4>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">À propos de nous</h4>
               <p className="text-sm leading-relaxed text-slate-500">
                 Aqua&Deb est un partenaire de confiance pour la plomberie et le débouchage. Intervention rapide, garantie 12 mois,
                 disponible 24h/24 et 7j/7.
               </p>
-            </div>            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
-                <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
-              </div>
-              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
-                Nos services
-              </h4>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Nos services</h4>
               <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Services de plomberie', href: '/services/plomberie' },
-    { label: 'Services de débouchage', href: '/services/debouchage' },
-    { label: 'Dépannage plomberie', href: '/services/plomberie' },
-    { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
-    { label: 'Entretien plomberie', href: '/entretien' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
-              </ul>
-            </div>            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
-                <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
-              </div>
-              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
-                Zones d'intervention
-              </h4>
-              <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Liége', href: '/zones/liege' },
-    { label: 'Namur', href: '/zones/namur' },
-    { label: 'Charleroi', href: '/zones/charleroi' },
-    { label: 'Mons', href: '/zones/mons' },
-    { label: 'Verviers', href: '/zones/verviers' },
-    { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
-    { label: 'Toutes les zones', href: '/zones' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
+                {[
+                  { label: 'Services de plomberie', href: '/services/plomberie' },
+                  { label: 'Services de débouchage', href: '/services/debouchage' },
+                  { label: 'Dépannage plomberie', href: '/services/plomberie' },
+                  { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
+                  { label: 'Entretien plomberie', href: '/entretien' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Zones d'intervention</h4>
+              <ul className="space-y-2 text-sm">
+                {[
+                  { label: 'Liège', href: '/zones/liege' },
+                  { label: 'Namur', href: '/zones/namur' },
+                  { label: 'Charleroi', href: '/zones/charleroi' },
+                  { label: 'Mons', href: '/zones/mons' },
+                  { label: 'Verviers', href: '/zones/verviers' },
+                  { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
+                  { label: 'Toutes les zones', href: '/zones' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Contact</h4>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-center gap-3">
+                  <Send className="w-4 h-4 text-slate-500" />
+                  <Link to="/contact" className="hover:text-white transition-colors">Page contact</Link>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-orange-600" />
+                  <a href={BRAND.phoneLink} className="text-white font-bold hover:text-orange-500 transition-colors">{BRAND.phoneDisplay}</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-slate-500" />
+                  <a href={`mailto:${BRAND.email}`} className="hover:text-white transition-colors">{BRAND.email}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Informations légales</h4>
+              <ul className="space-y-2 text-sm">
+                {['Conditions générales', 'Politique de confidentialité', 'Mentions légales'].map((item, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:text-white transition-colors">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
 
           <div className="container mx-auto px-4 border-t border-slate-900 pt-8 text-xs text-center text-slate-600">
-            <p>© 2025 Aqua&Deb. Tous droits réservés.</p>
+            <p>&copy; 2025 Aqua&Deb. Tous droits réservés.</p>
           </div>
         </footer>
       </main>

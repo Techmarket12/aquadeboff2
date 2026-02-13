@@ -106,4 +106,4 @@ export const SEO_CONFIG = {
   },
 };
 
-export const DEFAULT_OG_IMAGE = "https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png";
+export const DEFAULT_OG_IMAGE = "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png";

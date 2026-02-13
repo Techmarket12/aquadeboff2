@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { getServiceLink } from '../utils/serviceRoutes';
 import {
@@ -76,7 +76,7 @@ const BRAND = {
   phoneDisplay: "0493 41 52 83",
   phoneLink: "tel:0493415283",
   email: "aquadeb22@gmail.com",
-  logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png"
+  logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png"
 };
 
 // --- IMAGES REALISATIONS ---
@@ -503,7 +503,7 @@ export default function RealisationsPage() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative">
-              <img src={BRAND.logoUrl} alt="Aqua&Deb Logo" className="relative h-12 w-auto object-contain" />
+              <img src={BRAND.logoUrl} alt="Aqua&Deb Logo" className="relative h-12 w-12 object-contain" />
             </div>
           </Link>
 
@@ -763,7 +763,7 @@ export default function RealisationsPage() {
             {/* Col 1: À propos */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
                 <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
               </div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">À propos de nous</h4>

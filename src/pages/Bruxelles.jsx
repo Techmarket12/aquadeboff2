@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, MapPin, CheckCircle2, ChevronDown, Menu, X, Send, Mail } from 'lucide-react';
 
@@ -8,7 +8,7 @@ const BRAND = {
   phoneLink: 'tel:0493415283',
   email: 'aquadeb22@gmail.com',
   logoUrl:
-    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png'
+    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png'
 };
 
 const NAV_LINKS = [
@@ -80,7 +80,7 @@ export default function BruxellesPage() {
       <header className={`sticky top-0 z-50 bg-white border-b border-slate-100 transition-all ${isScrolled ? 'shadow-md py-2' : 'py-3'}`}>
         <div className="container mx-auto px-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+            <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
             <div className="font-black text-slate-900 tracking-tight">AQUA<span className="text-blue-600">&</span>DEB</div>
           </Link>
           <nav className="hidden lg:flex items-center gap-6">
@@ -188,7 +188,7 @@ export default function BruxellesPage() {
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+              <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
               <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
             </div>
             <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">

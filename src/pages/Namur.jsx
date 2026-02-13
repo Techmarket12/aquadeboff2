@@ -1,5 +1,5 @@
-﻿import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Ajout de useNavigate
 import { getServiceLink } from '../utils/serviceRoutes';
 import {
   Phone,
@@ -54,7 +54,7 @@ const BRAND = {
   phoneLink: 'tel:0493415283',
   email: 'aquadeb22@gmail.com',
   logoUrl:
-    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=fxUdz8CZDwIQ7kNvwFPE_mG&_nc_oc=AdmHXiZb_JPA4yegaOUXndoZ-eflzFNBiB-aRRMWSLmrOaDIiir48tn-cViJMfAbNEY&_nc_zt=24&_nc_ht=scontent-lga3-3.xx&_nc_gid=9JrntzsW-6BdH6ZD_wi9dA&oh=00_AfngjZ802_se1bD5T_Kna3ZxygdW341dHZwuMWQydKYtnw&oe=6947583C'
+    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png'
 };
 
 const NAV_LINKS = [
@@ -66,7 +66,7 @@ const NAV_LINKS = [
     columns: [
       {
         title: 'Plomberie',
-        desc: "Solutions complétes pour l'habitat",
+        desc: "Solutions complètes pour l'habitat",
         items: [
           'Dépannage fuites',
           'Dépannage sanitaires',
@@ -75,7 +75,7 @@ const NAV_LINKS = [
           'Entretien',
           'Service de robinetterie',
           'Service de boiler / chauffe-eau',
-          'Remplacement canalisation en grés',
+          'Remplacement canalisation en grès',
           'Inspection caméra et recherche fuites'
         ]
       },
@@ -101,7 +101,7 @@ const NAV_LINKS = [
       { label: 'Toutes nos zones', href: '/zones' },
       { label: 'Namur et alentours', href: '/zones/namur' },
       { label: 'Charleroi et alentours', href: '/zones/charleroi' },
-      { label: 'Liége et alentours', href: '/zones/liege' },
+      { label: 'Liège et alentours', href: '/zones/liege' },
       { label: 'Verviers et alentours', href: '/zones/verviers' },
       { label: 'Mons et alentours', href: '/zones/mons' },
       { label: 'Brabant Wallon & Flamand', href: '/zones/brabant-wallon-flamand' }
@@ -123,7 +123,8 @@ const AiDiagnosticModal = ({ isOpen, onClose }) => {
     setError('');
     setResult(null);
 
-    const apiKey = '';
+    // ATTENTION : Idéalement, utilisez une variable d'environnement (process.env.REACT_APP_GEMINI_KEY)
+    const apiKey = ''; 
     const prompt = `Act as an expert plumber in Namur, Belgium. Analyze this customer issue: "${description}".
     Respond in JSON format ONLY.
     {
@@ -173,11 +174,11 @@ const AiDiagnosticModal = ({ isOpen, onClose }) => {
           {!result ? (
             <>
               <p className="text-slate-600 mb-4 font-medium">
-                Habitant de Namur ou environs ? Décrivez votre probléme de plomberie ou débouchage.
+                Habitant de Namur ou environs ? Décrivez votre problème de plomberie ou débouchage.
               </p>
               <textarea
                 className="w-full border-2 border-slate-200 rounded-xl p-4 min-h-[120px] focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none resize-none bg-slate-50 text-slate-800 font-medium"
-                placeholder="Exemple : J'habite é Jambes et mon évier est bouché..."
+                placeholder="Exemple : J'habite à Jambes et mon évier est bouché..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
@@ -188,7 +189,7 @@ const AiDiagnosticModal = ({ isOpen, onClose }) => {
                 className="w-full mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg text-lg"
               >
                 {loading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Sparkles className="w-6 h-6" />}
-                {loading ? 'Analyse locale...' : "Analyser le probléme"}
+                {loading ? 'Analyse locale...' : "Analyser le problème"}
               </button>
             </>
           ) : (
@@ -220,6 +221,7 @@ const AiDiagnosticModal = ({ isOpen, onClose }) => {
 };
 
 export default function ZoneNamurPage() {
+  const navigate = useNavigate(); // Hook de navigation ajouté
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -270,11 +272,11 @@ export default function ZoneNamurPage() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative">
-              <div className="absolute inset-0 bg-blue-500 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="absolute inset-0 bg-blue-500 rounded-lg blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
               <img
                 src={BRAND.logoUrl}
                 alt="Aqua&Deb Logo"
-                className="relative h-12 w-12 md:h-14 md:w-14 rounded-full object-cover border-2 border-white shadow-md"
+                className="relative h-12 w-12 md:h-14 md:w-14 object-contain"
               />
             </div>
             <div className="flex flex-col">
@@ -475,10 +477,10 @@ export default function ZoneNamurPage() {
 
           <div className="container mx-auto px-4 relative z-10 text-center lg:text-left">
             <span className="inline-flex items-center gap-2 bg-red-600/20 text-red-400 px-4 py-2 rounded-full text-sm font-bold mb-6">
-              <MapPin className="w-4 h-4" /> Intervention rapide é Namur
+              <MapPin className="w-4 h-4" /> Intervention rapide à Namur
             </span>
             <h1 className="text-4xl lg:text-6xl font-black text-white mb-6">
-              Plombier & Déboucheur é <span className="text-orange-500">Namur</span>
+              Plombier & Déboucheur à <span className="text-orange-500">Namur</span>
             </h1>
             <p className="text-xl text-slate-300 max-w-3xl lg:max-w-2xl">
               Besoin d'un plombier en urgence sur <strong>Namur et sa province</strong> ? Aqua&Deb est votre spécialiste local
@@ -508,7 +510,7 @@ export default function ZoneNamurPage() {
                   <Truck className="w-5 h-5 text-cyan-300" /> Camion équipé
                 </div>
                 <p className="text-slate-200 text-sm mt-2">
-                  Nos camionnettes sillonnent la région avec tout le matériel (haute pression, caméra, piéces).
+                  Nos camionnettes sillonnent la région avec tout le matériel (haute pression, caméra, pièces).
                 </p>
               </div>
             </div>
@@ -533,10 +535,10 @@ export default function ZoneNamurPage() {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-black text-slate-900 mb-6 text-center">
-              Vos services é <span className="text-blue-600">Namur</span>
+              Vos services à <span className="text-blue-600">Namur</span>
             </h2>
             <p className="text-slate-600 max-w-4xl mx-auto text-center text-lg leading-relaxed">
-              Que vous soyez un particulier é Salzinnes, un commeréant dans le piétonnier de Namur ou une entreprise
+              Que vous soyez un particulier à Salzinnes, un commerçant dans le piétonnier de Namur ou une entreprise
               dans le zoning de Naninne, nous avons la solution.
             </p>
           </div>
@@ -545,12 +547,12 @@ export default function ZoneNamurPage() {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {['Débouchage WC Namur', 'Fuite d\'eau Jambes', 'Boiler Saint-Servais', 'égouttage Bouge'].map((item, i) => (
+              {['Débouchage WC Namur', 'Fuite d\'eau Jambes', 'Boiler Saint-Servais', 'Égouttage Bouge'].map((item, i) => (
                 <div key={i} className="bg-slate-50 rounded-2xl p-6 shadow-sm border border-slate-100">
                   <MapPin className="w-8 h-8 text-blue-600 mb-4" />
                   <h3 className="font-black text-lg mb-2">{item}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Service de proximité disponible 7j/7. Nous connaissons les spécificités des bétiments de la région.
+                    Service de proximité disponible 7j/7. Nous connaissons les spécificités des bâtiments de la région.
                   </p>
                 </div>
               ))}
@@ -563,8 +565,8 @@ export default function ZoneNamurPage() {
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   Installation et réparation de robinetterie, WC, chasse d'eau, et tuyauterie.
-                  Nous intervenons souvent dans les vieilles maisons de maêtre namuroises pour la rénovation
-                  de conduites en plomb ou en grés.
+                  Nous intervenons souvent dans les vieilles maisons de maître namuroises pour la rénovation
+                  de conduites en plomb ou en grès.
                 </p>
                 <ul className="grid grid-cols-2 gap-2 text-sm text-slate-600">
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500"/> Recherche de fuite</li>
@@ -579,10 +581,10 @@ export default function ZoneNamurPage() {
                   <Droplets className="w-6 h-6 text-blue-500" /> Débouchage Urgent
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  WC bouché ? évier qui refoule ? Nous débouchons vos canalisations haute pression.
-                  Service rapide pour les restaurants et kots étudiants trés présents é Namur.
+                  WC bouché ? Évier qui refoule ? Nous débouchons vos canalisations haute pression.
+                  Service rapide pour les restaurants et kots étudiants très présents à Namur.
                 </p>
-                 <ul className="grid grid-cols-2 gap-2 text-sm text-slate-600">
+                  <ul className="grid grid-cols-2 gap-2 text-sm text-slate-600">
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500"/> Curage égout</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500"/> Inspection caméra</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500"/> Débouchage évier</li>
@@ -601,26 +603,26 @@ export default function ZoneNamurPage() {
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                 Notre équipe couvre l'ensemble du Grand Namur et les communes avoisinantes.
-                Nous garantissons un délai d'intervention court gréce é notre position centrale.
+                Nous garantissons un délai d'intervention court grâce à notre position centrale.
               </p>
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
                 <h4 className="font-bold text-slate-900 mb-4">Communes principales :</h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-slate-600">
-                  <span>?? Namur Centre</span>
-                  <span>?? Jambes</span>
-                  <span>?? Salzinnes</span>
-                  <span>?? Saint-Servais</span>
-                  <span>?? Belgrade</span>
-                  <span>?? Bouge</span>
-                  <span>?? Champion</span>
-                  <span>?? Erpent</span>
-                  <span>?? Wépion</span>
-                  <span>?? Malonne</span>
-                  <span>?? Flawinne</span>
-                  <span>?? Naninne</span>
-                  <span>?? Beez</span>
-                  <span>?? Vedrin</span>
-                  <span>?? Daussoulx</span>
+                  <span>📍 Namur Centre</span>
+                  <span>📍 Jambes</span>
+                  <span>📍 Salzinnes</span>
+                  <span>📍 Saint-Servais</span>
+                  <span>📍 Belgrade</span>
+                  <span>📍 Bouge</span>
+                  <span>📍 Champion</span>
+                  <span>📍 Erpent</span>
+                  <span>📍 Wépion</span>
+                  <span>📍 Malonne</span>
+                  <span>📍 Flawinne</span>
+                  <span>📍 Naninne</span>
+                  <span>📍 Beez</span>
+                  <span>📍 Vedrin</span>
+                  <span>📍 Daussoulx</span>
                 </div>
               </div>
             </div>
@@ -637,7 +639,7 @@ export default function ZoneNamurPage() {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-black text-slate-900 mb-4">
-              L'eau é Namur : <span className="text-blue-600">Calcaire ?</span>
+              L'eau à Namur : <span className="text-blue-600">Calcaire ?</span>
             </h2>
             <p className="text-slate-600 mb-12 max-w-3xl mx-auto">
               L'eau de la région namuroise est moyennement dure. Le calcaire peut endommager vos boilers et robinets.
@@ -656,9 +658,9 @@ export default function ZoneNamurPage() {
                  </p>
                </div>
                <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                 <h3 className="font-bold text-slate-900 mb-2">Vieux Bétiments</h3>
+                 <h3 className="font-bold text-slate-900 mb-2">Vieux Bâtiments</h3>
                  <p className="text-sm text-slate-600">
-                   Dans le vieux Namur, attention aux canalisations en plomb ou grés qui peuvent fuir. Nous les remplaéons.
+                   Dans le vieux Namur, attention aux canalisations en plomb ou grès qui peuvent fuir. Nous les remplaçons.
                  </p>
                </div>
             </div>
@@ -691,8 +693,8 @@ export default function ZoneNamurPage() {
         </section>
 
         <section className="py-20 bg-orange-600 text-white text-center">
-          <h2 className="text-3xl font-black mb-4">Urgence Plomberie é Namur ?</h2>
-          <p className="mb-8 text-lg">Un technicien est probablement déjé dans votre quartier.</p>
+          <h2 className="text-3xl font-black mb-4">Urgence Plomberie à Namur ?</h2>
+          <p className="mb-8 text-lg">Un technicien est probablement déjà dans votre quartier.</p>
           <a
             href={BRAND.phoneLink}
             className="inline-flex items-center gap-3 bg-white text-orange-600 font-black px-10 py-5 rounded-xl shadow-xl"
@@ -702,9 +704,10 @@ export default function ZoneNamurPage() {
         </section>
 
         <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t-4 border-orange-600">
-          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">            <div>
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+            <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
                 <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
               </div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
@@ -714,57 +717,68 @@ export default function ZoneNamurPage() {
                 Aqua&Deb est un partenaire de confiance pour la plomberie et le débouchage. Intervention rapide, garantie 12 mois,
                 disponible 24h/24 et 7j/7.
               </p>
-            </div>            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
-                <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
-              </div>
+            </div>
+            <div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
                 Nos services
               </h4>
               <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Services de plomberie', href: '/services/plomberie' },
-    { label: 'Services de débouchage', href: '/services/debouchage' },
-    { label: 'Dépannage plomberie', href: '/services/plomberie' },
-    { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
-    { label: 'Entretien plomberie', href: '/entretien' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
+                {[
+                  { label: 'Services de plomberie', href: '/services/plomberie' },
+                  { label: 'Services de débouchage', href: '/services/debouchage' },
+                  { label: 'Dépannage plomberie', href: '/services/plomberie' },
+                  { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
+                  { label: 'Entretien plomberie', href: '/entretien' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
-            </div>            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
-                <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
-              </div>
+            </div>
+            <div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
                 Zones d'intervention
               </h4>
               <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Liége', href: '/zones/liege' },
-    { label: 'Namur', href: '/zones/namur' },
-    { label: 'Charleroi', href: '/zones/charleroi' },
-    { label: 'Mons', href: '/zones/mons' },
-    { label: 'Verviers', href: '/zones/verviers' },
-    { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
-    { label: 'Toutes les zones', href: '/zones' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
+                {[
+                  { label: 'Liège', href: '/zones/liege' },
+                  { label: 'Namur', href: '/zones/namur' },
+                  { label: 'Charleroi', href: '/zones/charleroi' },
+                  { label: 'Mons', href: '/zones/mons' },
+                  { label: 'Verviers', href: '/zones/verviers' },
+                  { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
+                  { label: 'Toutes les zones', href: '/zones' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Colonne Contact ajoutée pour équilibrer la grille (Optionnel) */}
+             <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
+                Contact
+              </h4>
+              <ul className="space-y-2 text-sm">
+                 <li><a href={BRAND.phoneLink} className="hover:text-white">{BRAND.phoneDisplay}</a></li>
+                 <li><a href={`mailto:${BRAND.email}`} className="hover:text-white">{BRAND.email}</a></li>
+                 <li><Link to="/contact" className="hover:text-white">Formulaire de contact</Link></li>
+              </ul>
+            </div>
+             {/* Colonne Légale ajoutée pour équilibrer la grille (Optionnel) */}
+             <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
+                Légal
+              </h4>
+              <ul className="space-y-2 text-sm">
+                 <li><Link to="#" className="hover:text-white">Mentions légales</Link></li>
+                 <li><Link to="#" className="hover:text-white">Confidentialité</Link></li>
               </ul>
             </div>
           </div>
@@ -777,15 +791,3 @@ export default function ZoneNamurPage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Phone,
@@ -56,7 +56,7 @@ import { getServiceLink } from './utils/serviceRoutes';
 import useSEO from './utils/useSEO';
 import { SEO_CONFIG } from './seoConfig';
 
-// --- STYLES INJECTéS POUR LES ANIMATIONS ---
+// --- STYLES INJECTÉS POUR LES ANIMATIONS ---
 const styles = `
   @keyframes scroll {
     0% { transform: translateX(0); }
@@ -86,7 +86,7 @@ const BRAND = {
   phoneDisplay: "0493 41 52 83",
   phoneLink: "tel:0493415283",
   email: "aquadeb22@gmail.com",
-  logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png"
+  logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png"
 };
 
 // --- DATA ---
@@ -99,7 +99,7 @@ const NAV_LINKS = [
     columns: [
       {
         title: 'Plomberie',
-        desc: "Solutions complétes pour l'habitat",
+        desc: "Solutions complètes pour l'habitat",
         items: [
           'Dépannage fuites',
           'Dépannage sanitaires',
@@ -108,7 +108,7 @@ const NAV_LINKS = [
           'Entretien',
           'Service de robinetterie',
           'Service de boiler / chauffe-eau',
-          'Remplacement canalisation en grés',
+          'Remplacement canalisation en grès',
           'Inspection caméra et recherche fuites'
         ]
       },
@@ -134,7 +134,7 @@ const NAV_LINKS = [
       { label: 'Toutes nos zones', href: '/zones' },
       { label: 'Namur et alentours', href: '/zones/namur' },
       { label: 'Charleroi et alentours', href: '/zones/charleroi' },
-      { label: 'Liége et alentours', href: '/zones/liege' },
+      { label: 'Liège et alentours', href: '/zones/liege' },
       { label: 'Verviers et alentours', href: '/zones/verviers' },
       { label: 'Mons et alentours', href: '/zones/mons' },
       { label: 'Brabant Wallon & Flamand', href: '/zones/brabant-wallon-flamand' }
@@ -163,21 +163,23 @@ const REALIZATIONS = [
   "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770385254/IMG_3469.jpg_ycgn8m.jpg",
   "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770385235/IMG_3491.jpg_fuvui5.jpg",
   "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770385235/Image_tk9vwd.jpg",
-  "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770385234/IMG_3489_utycd7.webp"
+  "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770385234/IMG_3489_utycd7.webp",
+  "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971064/ddnzdezfsekbdwzqw2ew.webp",
+  "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971017/xrbhx7sj6huwccqkrxbp.webp"
 ];
 
 const REVIEWS = [
-  { name: "Jean Dupont", text: "Intervention rapide pour une fuite d'eau importante. Le technicien était trés pro.", rating: 5, date: "Il y a 3 jours", avatar: "https://i.pravatar.cc/150?img=11" },
+  { name: "Jean Dupont", text: "Intervention rapide pour une fuite d'eau importante. Le technicien était très pro.", rating: 5, date: "Il y a 3 jours", avatar: "https://i.pravatar.cc/150?img=11" },
   { name: "Marie Laurent", text: "WC débouché en 30 minutes. Travail propre et prix correct. Je recommande.", rating: 5, date: "Il y a 1 semaine", avatar: "https://i.pravatar.cc/150?img=5" },
-  { name: "Pierre Van Hout", text: "Remplacement de chauffe-eau effectué le jour méme. Service impeccable.", rating: 5, date: "Il y a 2 semaines", avatar: "https://i.pravatar.cc/150?img=3" },
-  { name: "Sophie Martin", text: "Trés satisfaite du service. Ils sont venus un dimanche pour une urgence.", rating: 5, date: "Il y a 3 semaines", avatar: "https://i.pravatar.cc/150?img=9" },
-  { name: "Ahmed Benali", text: "Plombier sympa et efficace. Il m'a bien expliqué le probléme.", rating: 4, date: "Il y a 1 mois", avatar: "https://i.pravatar.cc/150?img=13" },
+  { name: "Pierre Van Hout", text: "Remplacement de chauffe-eau effectué le jour même. Service impeccable.", rating: 5, date: "Il y a 2 semaines", avatar: "https://i.pravatar.cc/150?img=3" },
+  { name: "Sophie Martin", text: "Très satisfaite du service. Ils sont venus un dimanche pour une urgence.", rating: 5, date: "Il y a 3 semaines", avatar: "https://i.pravatar.cc/150?img=9" },
+  { name: "Ahmed Benali", text: "Plombier sympa et efficace. Il m'a bien expliqué le problème.", rating: 4, date: "Il y a 1 mois", avatar: "https://i.pravatar.cc/150?img=13" },
   { name: "Chantal Dubois", text: "Je recommande cette société pour leur réactivité et leur gentillesse.", rating: 5, date: "Il y a 1 mois", avatar: "https://i.pravatar.cc/150?img=20" },
-  { name: "Marc Lambert", text: "Probléme d'égout bouché réglé en un rien de temps. Merci !", rating: 5, date: "Il y a 2 mois", avatar: "https://i.pravatar.cc/150?img=15" },
+  { name: "Marc Lambert", text: "Problème d'égout bouché réglé en un rien de temps. Merci !", rating: 5, date: "Il y a 2 mois", avatar: "https://i.pravatar.cc/150?img=15" },
 ];
 
 const ZONES_INTERVENTION_LIST = [
-  "Namur", "Charleroi", "Liége", "Mons", "Bruxelles", "Wavre", "Nivelles", "Waterloo", "Verviers"
+  "Namur", "Charleroi", "Liège", "Mons", "Bruxelles", "Wavre", "Nivelles", "Waterloo", "Verviers"
 ];
 
 const SEOManager = () => {
@@ -256,7 +258,7 @@ const AiDiagnosticModal = ({ isOpen, onClose, onPhoneClick }) => {
               </p>
               <textarea 
                 className="w-full border-2 border-slate-200 rounded-xl p-4 min-h-[120px] focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none resize-none bg-slate-50 text-slate-800 font-medium"
-                placeholder="Décrivez votre probléme ici..."
+                placeholder="Décrivez votre problème ici..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
@@ -359,7 +361,7 @@ const Portfolio3D = ({ images, onSelect }) => {
     const isActive = diff === 0;
     const isPrev = diff === -1;
     const isNext = diff === 1;
-    
+     
     // Default hidden/back style
     let style = {
       opacity: 0,
@@ -629,8 +631,8 @@ function HomePage() {
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative">
-              <div className="absolute inset-0 bg-blue-500 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
-              <img src={BRAND.logoUrl} alt="Aqua&Deb Logo" className="relative h-12 w-12 md:h-14 md:w-14 rounded-full object-cover border-2 border-white shadow-md" />
+              <div className="absolute inset-0 bg-blue-500 rounded-lg blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <img src={BRAND.logoUrl} alt="Aqua&Deb Logo" className="relative h-12 w-12 md:h-14 md:w-14 object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="text-xl md:text-2xl font-black text-slate-900 leading-none tracking-tighter">AQUA<span className="text-blue-600">&</span>DEB</span>
@@ -904,7 +906,7 @@ function HomePage() {
                       />
                     </div>
                     <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform active:scale-95 flex justify-center items-center gap-2">
-                      <Phone className="w-5 h-5" /> être rappelé
+                      <Phone className="w-5 h-5" /> Être rappelé
                     </button>
                   </form>
                 </div>
@@ -936,7 +938,9 @@ function HomePage() {
                       // Upload des fichiers sur Cloudinary avant l'envoi Formspree
                       if (selectedFiles && selectedFiles.length > 0) {
                         const urls = await uploadFiles(selectedFiles);
-                        urls.forEach((url) => formData.append('photos[]', url));
+                        urls.forEach((url, index) => {
+                          formData.append(`photos[${index + 1}]`, url);
+                        });
                         setUploadedUrls(urls);
                       }
 
@@ -1008,7 +1012,7 @@ function HomePage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-600 uppercase">Détails du probléme</label>
+                    <label className="text-xs font-bold text-slate-600 uppercase">Détails du problème</label>
                     <textarea
                       name="message"
                       className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:border-blue-500 outline-none transition-colors h-24 resize-none"
@@ -1018,7 +1022,7 @@ function HomePage() {
 
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-600 uppercase flex items-center justify-between">
-                      <span>Photos du probléme (Optionnel)</span>
+                      <span>Photos du problème (Optionnel)</span>
                     </label>
                     <CloudinaryUploader onFilesChange={setSelectedFiles} />
                   </div>
@@ -1140,7 +1144,7 @@ function HomePage() {
                   />
                 </div>
                 <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform active:scale-95 flex justify-center items-center gap-2">
-                  <Phone className="w-5 h-5" /> être rappelé
+                  <Phone className="w-5 h-5" /> Être rappelé
                 </button>
               </form>
             </div>
@@ -1157,7 +1161,7 @@ function HomePage() {
                   Travaux d'égouttage et canalisations
                 </h2>
                 <p className="text-blue-700 font-bold text-lg mt-2 mb-6 uppercase tracking-wider">un diagnostic précis, des solutions durables.</p>
-                {/* Vidéo mobile placée juste aprés le sous-titre */}
+                {/* Vidéo mobile placée juste après le sous-titre */}
                 <video
                   ref={mobileVideoRef}
                   className="block lg:hidden w-full rounded-2xl shadow-2xl h-64 object-cover mb-6"
@@ -1184,19 +1188,19 @@ function HomePage() {
                 />
                 <div className="space-y-6 text-lg text-slate-600">
                   <p>
-                    Chez <strong>Aqua&Deb</strong>, nous intervenons bien au-delé du simple dépannage. Nous sommes spécialisés dans les travaux d'égouttage, le remplacement de canalisations et l'inspection par caméra afin d'identifier précisément l'origine des problémes et d'y apporter une solution fiable et durable.
+                    Chez <strong>Aqua&Deb</strong>, nous intervenons bien au-delà du simple dépannage. Nous sommes spécialisés dans les travaux d'égouttage, le remplacement de canalisations et l'inspection par caméra afin d'identifier précisément l'origine des problèmes et d'y apporter une solution fiable et durable.
                   </p>
                   <p>
-                    Gréce é nos équipements de diagnostic de derniére génération, nous localisons fissures, affaissements, obstructions ou ruptures sans travaux inutiles. Chaque intervention commence par une analyse claire de la situation, suivie d'une proposition adaptée é l'installation et au budget du client.
+                    Grâce à nos équipements de diagnostic de dernière génération, nous localisons fissures, affaissements, obstructions ou ruptures sans travaux inutiles. Chaque intervention commence par une analyse claire de la situation, suivie d'une proposition adaptée à l'installation et au budget du client.
                   </p>
                   <p>
-                    Nous intervenons sur l'ensemble de la <strong>Wallonie et Bruxelles</strong>, aussi bien pour des habitations privées que pour des immeubles ou locaux professionnels, avec la méme exigence de qualité et de propreté.
+                    Nous intervenons sur l'ensemble de la <strong>Wallonie et Bruxelles</strong>, aussi bien pour des habitations privées que pour des immeubles ou locaux professionnels, avec la même exigence de qualité et de propreté.
                   </p>
                   <ul className="space-y-3 mt-6">
                     {[
                       "Inspection des canalisations par caméra haute définition",
                       "Travaux d'égouttage complets et réparations ciblées",
-                      "Remplacement de canalisations défectueuses ou obsolétes",
+                      "Remplacement de canalisations défectueuses ou obsolètes",
                       "Diagnostic précis avant toute intervention",
                       "Devis clair et détaillé avant travaux",
                       "Respect total de l'habitation et de l'environnement"
@@ -1245,11 +1249,11 @@ function HomePage() {
         {/* --- FOOTER STRUCTURE 5 COLONNES --- */}
         <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t-4 border-orange-600">
           <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-            
+             
             {/* Col 1: À propos */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
                 <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
               </div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">À propos de nous</h4>
@@ -1279,7 +1283,7 @@ function HomePage() {
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Zones d'intervention</h4>
               <ul className="space-y-2 text-sm">
                 {[
-                  { label: "Liége", href: "/zones/liege" },
+                  { label: "Liège", href: "/zones/liege" },
                   { label: "Namur", href: "/zones/namur" },
                   { label: "Charleroi", href: "/zones/charleroi" },
                   { label: "Mons", href: "/zones/mons" },
@@ -1322,7 +1326,7 @@ function HomePage() {
             </div>
 
           </div>
-          
+           
           <div className="container mx-auto px-4 border-t border-slate-900 pt-8 text-xs text-center text-slate-600">
             <p>&copy; 2025 Aqua&Deb. Tous droits réservés.</p>
           </div>
@@ -1387,39 +1391,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

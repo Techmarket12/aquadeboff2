@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getServiceLink } from '../utils/serviceRoutes';
 import { trackPhoneConversion } from '../components/GoogleAdsTracking';
@@ -52,7 +52,7 @@ const BRAND = {
   phoneLink: 'tel:0493415283',
   email: 'aquadeb22@gmail.com',
   logoUrl:
-    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=fxUdz8CZDwIQ7kNvwFPE_mG&_nc_oc=AdmHXiZb_JPA4yegaOUXndoZ-eflzFNBiB-aRRMWSLmrOaDIiir48tn-cViJMfAbNEY&_nc_zt=24&_nc_ht=scontent-lga3-3.xx&_nc_gid=9JrntzsW-6BdH6ZD_wi9dA&oh=00_AfngjZ802_se1bD5T_Kna3ZxygdW341dHZwuMWQydKYtnw&oe=6947583C'
+    'https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png'
 };
 
 const NAV_LINKS = [
@@ -64,7 +64,7 @@ const NAV_LINKS = [
     columns: [
       {
         title: 'Plomberie',
-        desc: "Solutions complétes pour l'habitat",
+        desc: "Solutions complètes pour l'habitat",
         items: [
           'Dépannage fuites',
           'Dépannage sanitaires',
@@ -73,7 +73,7 @@ const NAV_LINKS = [
           'Entretien',
           'Service de robinetterie',
           'Service de boiler / chauffe-eau',
-          'Remplacement canalisation en grés',
+          'Remplacement canalisation en grès',
           'Inspection caméra et recherche fuites'
         ]
       },
@@ -99,7 +99,7 @@ const NAV_LINKS = [
       { label: 'Toutes nos zones', href: '/zones' },
       { label: 'Namur et alentours', href: '/zones/namur' },
       { label: 'Charleroi et alentours', href: '/zones/charleroi' },
-      { label: 'Liége et alentours', href: '/zones/liege' },
+      { label: 'Liège et alentours', href: '/zones/liege' },
       { label: 'Verviers et alentours', href: '/zones/verviers' },
       { label: 'Mons et alentours', href: '/zones/mons' },
       { label: 'Brabant Wallon & Flamand', href: '/zones/brabant-wallon-flamand' }
@@ -171,7 +171,7 @@ const AiDiagnosticModal = ({ isOpen, onClose, onPhoneClick }) => {
           {!result ? (
             <>
               <p className="text-slate-600 mb-4 font-medium">
-                Votre WC ou évier est bouché ? Décrivez le probléme (l'eau remonte, bruits, odeurs). L'IA vous conseille.
+                Votre WC ou évier est bouché ? Décrivez le problème (l'eau remonte, bruits, odeurs). L'IA vous conseille.
               </p>
               <textarea
                 className="w-full border-2 border-slate-200 rounded-xl p-4 min-h-[120px] focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none resize-none bg-slate-50 text-slate-800 font-medium"
@@ -271,11 +271,11 @@ export default function DebouchageWCEviersPage() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative">
-              <div className="absolute inset-0 bg-blue-500 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="absolute inset-0 bg-blue-500 rounded-lg blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
               <img
                 src={BRAND.logoUrl}
                 alt="Aqua&Deb Logo"
-                className="relative h-12 w-12 md:h-14 md:w-14 rounded-full object-cover border-2 border-white shadow-md"
+                className="relative h-12 w-12 md:h-14 md:w-14 object-contain"
               />
             </div>
             <div className="flex flex-col">
@@ -496,7 +496,7 @@ export default function DebouchageWCEviersPage() {
                   <Clock className="w-5 h-5 text-orange-300" /> Service Express
                 </div>
                 <p className="text-slate-200 text-sm mt-2">
-                  Nous arrivons généralement en moins de <strong>45 minutes</strong> pour tout probléme de WC ou canalisation engorgée.
+                  Nous arrivons généralement en moins de <strong>45 minutes</strong> pour tout problème de WC ou canalisation engorgée.
                 </p>
               </div>
               <div className="bg-white/10 border border-white/10 rounded-2xl p-5 text-left">
@@ -512,7 +512,7 @@ export default function DebouchageWCEviersPage() {
                   <CheckCircle2 className="w-5 h-5 text-cyan-300" /> Travail Propre
                 </div>
                 <p className="text-slate-200 text-sm mt-2">
-                  Respect de vos installations sanitaires. Nettoyage de la zone aprés l'intervention de débouchage.
+                  Respect de vos installations sanitaires. Nettoyage de la zone après l'intervention de débouchage.
                 </p>
               </div>
             </div>
@@ -542,7 +542,7 @@ export default function DebouchageWCEviersPage() {
             </h2>
             <p className="text-slate-600 max-w-4xl mx-auto text-center text-lg leading-relaxed">
               Aqua&Deb est le spécialiste du <strong>débouchage sanitaire</strong> en Belgique. Que ce soit pour un objet tombé dans les toilettes,
-              un amas de graisse dans l'évier de cuisine ou un probléme de calcaire, nous avons la solution.
+              un amas de graisse dans l'évier de cuisine ou un problème de calcaire, nous avons la solution.
               Nous utilisons des méthodes mécaniques et l'<strong>hydrocurage</strong> pour nettoyer vos tuyaux en profondeur
               sans utiliser de produits chimiques corrosifs.
             </p>
@@ -552,11 +552,11 @@ export default function DebouchageWCEviersPage() {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-black text-slate-900 mb-12 text-center">
-              Vos problémes de <span className="text-blue-600">canalisations</span> résolus
+              Vos problèmes de <span className="text-blue-600">canalisations</span> résolus
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {['WC Bouché', 'évier de cuisine', 'Douche & Baignoire', 'Sterput / Siphon'].map((item, i) => (
+              {['WC Bouché', 'Évier de cuisine', 'Douche & Baignoire', 'Sterput / Siphon'].map((item, i) => (
                 <div key={i} className="bg-slate-50 rounded-2xl p-6 shadow-sm border border-slate-100">
                   <Droplets className="w-8 h-8 text-blue-600 mb-4" />
                   <h3 className="font-black text-lg mb-2">{item}</h3>
@@ -578,7 +578,7 @@ export default function DebouchageWCEviersPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
-                    <span>écoulement trés lent dans l'évier ou la douche</span>
+                    <span>Écoulement très lent dans l'évier ou la douche</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
@@ -592,11 +592,11 @@ export default function DebouchageWCEviersPage() {
                 <ul className="space-y-3 text-slate-600 text-sm">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
-                    <span>Arrétez de faire couler de l'eau ou de tirer la chasse</span>
+                    <span>Arrêtez de faire couler de l'eau ou de tirer la chasse</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
-                    <span>évitez les déboucheurs chimiques (risque de brélure)</span>
+                    <span>Évitez les déboucheurs chimiques (risque de brûlure)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
@@ -621,21 +621,21 @@ export default function DebouchageWCEviersPage() {
           <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-6">
-                Pourquoi faire appel é un <span className="text-red-600">professionnel</span> ?
+                Pourquoi faire appel à un <span className="text-red-600">professionnel</span> ?
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                 Les ventouses et produits de supermarché ne suffisent souvent pas pour les bouchons tenaces situés
-                loin dans la canalisation. Insister peut méme endommager vos tuyaux ou provoquer une inondation.
-                Nos techniciens disposent de <strong>furets électriques</strong> et de systémes <strong>haute pression</strong>
+                loin dans la canalisation. Insister peut même endommager vos tuyaux ou provoquer une inondation.
+                Nos techniciens disposent de <strong>furets électriques</strong> et de systèmes <strong>haute pression</strong>
                 qui pulvérisent le bouchon et nettoient les parois du tuyau.
               </p>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                 Nous intervenons sur tout type de sanitaire : WC suspendu, WC au sol, évier double bac,
-                douche é l'italienne, lavabo, bidet et urinoir.
+                douche à l'italienne, lavabo, bidet et urinoir.
               </p>
               <ul className="space-y-4">
                 {[
-                  'élimination totale du bouchon',
+                  'Élimination totale du bouchon',
                   "Pas de produits chimiques nocifs",
                   'Nettoyage des parois (curage)',
                   'Intervention propre et sécurisée'
@@ -648,7 +648,7 @@ export default function DebouchageWCEviersPage() {
             </div>
             <div className="relative flex justify-center">
               <img
-                src="https://images.unsplash.com/photo-1621905424817-6c5401c91c80?auto=format&fit=crop&q=80&w=1000"
+                src="https://res.cloudinary.com/dw9jkwccj/image/upload/v1770374845/WhatsApp_Image_2026-02-06_at_11.45.01_d8hhwo.jpg"
                 alt="Plombier débouchant un évier"
                 className="rounded-2xl shadow-2xl w-full max-w-xl object-cover object-center mx-auto"
               />
@@ -668,7 +668,7 @@ export default function DebouchageWCEviersPage() {
               {[
                 {
                   t: 'Contact Urgence',
-                  d: "Vous nous expliquez le probléme. Nous vous donnons les consignes de sécurité."
+                  d: "Vous nous expliquez le problème. Nous vous donnons les consignes de sécurité."
                 },
                 {
                   t: 'Diagnostic sur place',
@@ -680,7 +680,7 @@ export default function DebouchageWCEviersPage() {
                 },
                 {
                   t: 'Débouchage & Test',
-                  d: "Utilisation du matériel adapté. Test d'écoulement é grand débit pour valider."
+                  d: "Utilisation du matériel adapté. Test d'écoulement à grand débit pour valider."
                 }
               ].map((s, i) => (
                 <div key={i} className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
@@ -701,13 +701,13 @@ export default function DebouchageWCEviersPage() {
               Nos équipements de <span className="text-blue-600">pointe</span>
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {['Pompe manuelle pro', 'Furet électrique', 'Haute Pression (Kércher)'].map((item, i) => (
+              {['Pompe manuelle pro', 'Furet électrique', 'Haute Pression (Kärcher)'].map((item, i) => (
                 <div key={i} className="p-8 bg-slate-50 rounded-2xl border border-slate-100">
                   <Camera className="w-10 h-10 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-black text-lg mb-2">{item}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Nous adaptons la méthode é la gravité du bouchon. De la simple pression d'air pour un siphon
-                    é l'hydrocurage pour une canalisation principale entartrée.
+                    Nous adaptons la méthode à la gravité du bouchon. De la simple pression d'air pour un siphon
+                    à l'hydrocurage pour une canalisation principale entartrée.
                   </p>
                 </div>
               ))}
@@ -739,7 +739,7 @@ export default function DebouchageWCEviersPage() {
                     <Euro className="w-5 h-5 text-orange-400" /> {t}
                   </div>
                   <p className="text-slate-200 text-sm mt-2 leading-relaxed">
-                    Tarification claire adaptée é la complexité du travail. Pas de frais cachés.
+                    Tarification claire adaptée à la complexité du travail. Pas de frais cachés.
                   </p>
                 </div>
               ))}
@@ -755,11 +755,11 @@ export default function DebouchageWCEviersPage() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-black text-slate-900 mb-6">Zones d'intervention</h2>
             <p className="text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Nos équipes de déboucheurs sillonnent la <strong>Belgique</strong>. Que vous soyez é <strong>Bruxelles</strong>,
+              Nos équipes de déboucheurs sillonnent la <strong>Belgique</strong>. Que vous soyez à <strong>Bruxelles</strong>,
               en <strong>Wallonie</strong> ou en périphérie, un camion d'intervention est proche de chez vous.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              {['Namur', 'Liége', 'Charleroi', 'Bruxelles', 'Mons', 'Verviers', 'Wavre', 'Nivelles', 'Waterloo'].map((city, i) => (
+              {['Namur', 'Liège', 'Charleroi', 'Bruxelles', 'Mons', 'Verviers', 'Wavre', 'Nivelles', 'Waterloo'].map((city, i) => (
                 <span
                   key={i}
                   className="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full font-medium"
@@ -786,7 +786,7 @@ export default function DebouchageWCEviersPage() {
                     a: "Non, nous privilégions les méthodes mécaniques et l'eau sous pression pour préserver vos tuyaux et l'environnement."
                   },
                   {
-                    q: "Combien coéte un débouchage ?",
+                    q: "Combien coûte un débouchage ?",
                     a: "Le prix dépend de la nature du bouchon. Un débouchage simple est moins cher qu'un hydrocurage de colonne."
                   },
                   {
@@ -808,120 +808,105 @@ export default function DebouchageWCEviersPage() {
           <h2 className="text-3xl font-black mb-4">WC ou évier bouché ?</h2>
           <p className="mb-8 text-lg">Ne laissez pas la situation s'aggraver. Aqua&Deb intervient en moins d'une heure.</p>
           <a
-            
+            href={BRAND.phoneLink}
+            onClick={handlePhoneClick}
+            className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-4 rounded-xl font-bold text-xl hover:bg-orange-50 transition-colors shadow-lg"
           >
             <Phone className="w-6 h-6" /> {BRAND.phoneDisplay}
           </a>
         </section>
 
-        <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t-4 border-orange-600">
-          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">            <div>
+                <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t-4 border-orange-600">
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+
+            <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
                 <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
               </div>
-              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
-                À propos de nous
-              </h4>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">À propos de nous</h4>
               <p className="text-sm leading-relaxed text-slate-500">
                 Aqua&Deb est un partenaire de confiance pour la plomberie et le débouchage. Intervention rapide, garantie 12 mois,
                 disponible 24h/24 et 7j/7.
               </p>
-            </div>            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
-                <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
-              </div>
-              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
-                Nos services
-              </h4>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Nos services</h4>
               <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Services de plomberie', href: '/services/plomberie' },
-    { label: 'Services de débouchage', href: '/services/debouchage' },
-    { label: 'Dépannage plomberie', href: '/services/plomberie' },
-    { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
-    { label: 'Entretien plomberie', href: '/entretien' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
-              </ul>
-            </div>            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
-                <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
-              </div>
-              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">
-                Zones d'intervention
-              </h4>
-              <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Liége', href: '/zones/liege' },
-    { label: 'Namur', href: '/zones/namur' },
-    { label: 'Charleroi', href: '/zones/charleroi' },
-    { label: 'Mons', href: '/zones/mons' },
-    { label: 'Verviers', href: '/zones/verviers' },
-    { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
-    { label: 'Toutes les zones', href: '/zones' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
+                {[
+                  { label: 'Services de plomberie', href: '/services/plomberie' },
+                  { label: 'Services de débouchage', href: '/services/debouchage' },
+                  { label: 'Dépannage plomberie', href: '/services/plomberie' },
+                  { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
+                  { label: 'Entretien plomberie', href: '/entretien' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Zones d'intervention</h4>
+              <ul className="space-y-2 text-sm">
+                {[
+                  { label: 'Liège', href: '/zones/liege' },
+                  { label: 'Namur', href: '/zones/namur' },
+                  { label: 'Charleroi', href: '/zones/charleroi' },
+                  { label: 'Mons', href: '/zones/mons' },
+                  { label: 'Verviers', href: '/zones/verviers' },
+                  { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
+                  { label: 'Toutes les zones', href: '/zones' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Contact</h4>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-center gap-3">
+                  <Send className="w-4 h-4 text-slate-500" />
+                  <Link to="/contact" className="hover:text-white transition-colors">Page contact</Link>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-orange-600" />
+                  <a href={BRAND.phoneLink} className="text-white font-bold hover:text-orange-500 transition-colors">{BRAND.phoneDisplay}</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-slate-500" />
+                  <a href={`mailto:${BRAND.email}`} className="hover:text-white transition-colors">{BRAND.email}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Informations légales</h4>
+              <ul className="space-y-2 text-sm">
+                {['Conditions générales', 'Politique de confidentialité', 'Mentions légales'].map((item, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:text-white transition-colors">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
 
           <div className="container mx-auto px-4 border-t border-slate-900 pt-8 text-xs text-center text-slate-600">
-            <p>© 2025 Aqua&Deb. Tous droits réservés.</p>
+            <p>&copy; 2025 Aqua&Deb. Tous droits réservés.</p>
           </div>
         </footer>
       </main>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

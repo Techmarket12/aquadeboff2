@@ -38,7 +38,6 @@ export default function CloudinaryUploader({ onFilesChange }) {
         onChange={(e) => onFilesChange?.(e.target.files)}
         className="text-sm"
       />
-      <p className="text-xs text-slate-500">JPG/PNG, multiple autorisé. Lé?Tenvoi se fera au clic sur é?oEnvoyeré?é.</p>
     </div>
   );
 }

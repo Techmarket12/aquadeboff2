@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getServiceLink } from '../utils/serviceRoutes';
 import CloudinaryUploader, { uploadFiles } from '../components/CloudinaryUploader';
@@ -33,7 +33,7 @@ import {
   Maximize2
 } from 'lucide-react';
 
-// --- STYLES INJECTéS ---
+// --- STYLES INJECTÉS ---
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap');
   
@@ -59,7 +59,7 @@ const BRAND = {
   phoneDisplay: "0493 41 52 83",
   phoneLink: "tel:0493415283",
   email: "aquadeb22@gmail.com",
-  logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png"
+  logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png"
 };
 
 // --- NOUVELLES ICONS (Liens fournis) ---
@@ -82,7 +82,7 @@ const NAV_LINKS = [
     columns: [
       {
         title: 'Plomberie',
-        desc: "Solutions complétes pour l'habitat",
+        desc: "Solutions complètes pour l'habitat",
         items: [
           'Dépannage fuites',
           'Dépannage sanitaires',
@@ -91,7 +91,7 @@ const NAV_LINKS = [
           'Entretien',
           'Service de robinetterie',
           'Service de boiler / chauffe-eau',
-          'Remplacement canalisation en grés',
+          'Remplacement canalisation en grès',
           'Inspection caméra et recherche fuites'
         ]
       },
@@ -117,7 +117,7 @@ const NAV_LINKS = [
       { label: 'Toutes nos zones', href: '/zones' },
       { label: 'Namur et alentours', href: '/zones/namur' },
       { label: 'Charleroi et alentours', href: '/zones/charleroi' },
-      { label: 'Liége et alentours', href: '/zones/liege' },
+      { label: 'Liège et alentours', href: '/zones/liege' },
       { label: 'Verviers et alentours', href: '/zones/verviers' },
       { label: 'Mons et alentours', href: '/zones/mons' },
       { label: 'Brabant Wallon & Flamand', href: '/zones/brabant-wallon-flamand' }
@@ -191,7 +191,7 @@ export default function ContactPage() {
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative">
-              <img src={BRAND.logoUrl} alt="Aqua&Deb Logo" className="relative h-12 w-auto object-contain" />
+              <img src={BRAND.logoUrl} alt="Aqua&Deb Logo" className="relative h-12 w-12 object-contain" />
             </div>
           </Link>
 
@@ -218,10 +218,10 @@ export default function ContactPage() {
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white shadow-xl rounded-xl border border-slate-100 p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-4 group-hover:translate-y-0 z-50 grid grid-cols-2 gap-8">
                         {link.columns.map((col, cIdx) => (
                           <div key={cIdx}>
-                          <h4 className="text-blue-600 font-black uppercase text-xs tracking-wider mb-1">{col.title}</h4>
-                          <p className="text-xs text-slate-400 mb-4">{col.desc}</p>
-                          <ul className="space-y-2">
-                            {col.items.map((item, iIdx) => (
+                            <h4 className="text-blue-600 font-black uppercase text-xs tracking-wider mb-1">{col.title}</h4>
+                            <p className="text-xs text-slate-400 mb-4">{col.desc}</p>
+                            <ul className="space-y-2">
+                              {col.items.map((item, iIdx) => (
                                   <li key={iIdx}>
                                     <Link
                                       to={getServiceLink(item)}
@@ -232,9 +232,9 @@ export default function ContactPage() {
                                     </Link>
                                   </li>
                                 ))}
-                          </ul>
-                        </div>
-                      ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
                     )}
 
@@ -292,7 +292,7 @@ export default function ContactPage() {
                         <div className="px-4 pb-4 space-y-4 bg-slate-50">
                           {link.columns.map((col, cIdx) => (
                             <div key={cIdx}>
-                            <h5 className="text-blue-600 font-bold uppercase text-xs mb-2">{col.title}</h5>
+                              <h5 className="text-blue-600 font-bold uppercase text-xs mb-2">{col.title}</h5>
                               <ul className="space-y-2 border-l-2 border-slate-200 pl-4">
                                 {col.items.map((item, iIdx) => (
                                 <li key={iIdx} className="text-sm text-slate-600">
@@ -366,7 +366,7 @@ export default function ContactPage() {
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto font-medium leading-relaxed">
               Une urgence plomberie ? Une rénovation en vue ? <br className="hidden md:block"/>
-              Notre équipe d'experts est préte é intervenir partout en Belgique. 
+              Notre équipe d'experts est prête à intervenir partout en Belgique. 
             </p>
           </div>
         </section>
@@ -376,7 +376,7 @@ export default function ContactPage() {
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               
-              {/* Texte SEO é gauche */}
+              {/* Texte SEO à gauche */}
               <div className="space-y-6">
                 <span className="text-orange-600 font-bold uppercase tracking-wider text-sm">Pourquoi nous choisir ?</span>
                 <h2 className="text-4xl font-black text-slate-900 font-[Montserrat] leading-tight">
@@ -387,7 +387,7 @@ export default function ContactPage() {
                     Chez <strong>Aqua&Deb</strong>, nous savons que chaque minute compte lors d'une <strong>fuite d'eau</strong> ou d'un <strong>débouchage urgent</strong>. C'est pourquoi nous avons mis en place un service client ultra-réactif.
                   </p>
                   <p>
-                    Que vous habitiez é <strong>Bruxelles</strong>, <strong>Namur</strong>, <strong>Liége</strong>, <strong>Charleroi</strong> ou <strong>Mons</strong>, nos techniciens sont géolocalisés pour intervenir en moins de 45 minutes.
+                    Que vous habitiez à <strong>Bruxelles</strong>, <strong>Namur</strong>, <strong>Liège</strong>, <strong>Charleroi</strong> ou <strong>Mons</strong>, nos techniciens sont géolocalisés pour intervenir en moins de 45 minutes.
                   </p>
                   <p>
                     Remplissez le formulaire ci-dessous pour obtenir un <strong>devis gratuit</strong> et sans engagement pour tous vos travaux de plomberie, chauffage et débouchage.
@@ -399,7 +399,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Image é droite */}
+              {/* Image à droite */}
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600 to-orange-400 rounded-3xl opacity-20 transform rotate-3"></div>
                 <img 
@@ -439,7 +439,7 @@ export default function ContactPage() {
                     <div className="flex items-center gap-4">
                       <img src={ICONS.mailApple} alt="Email" className="w-10 h-10 object-contain" />
                       <div>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">écrivez-nous</p>
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Écrivez-nous</p>
                         <a href={`mailto:${BRAND.email}`} className="text-base font-bold text-slate-900 hover:text-orange-600 transition-colors break-all">
                           {BRAND.email}
                         </a>
@@ -450,7 +450,7 @@ export default function ContactPage() {
                     <div className="flex items-center gap-4">
                       <img src={ICONS.mapApple} alt="Zone" className="w-10 h-10 object-contain" />
                       <div>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Siége Social</p>
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Siège Social</p>
                         <p className="text-base font-bold text-slate-900">
                           Av. des dessus de Lives 2,<br/>5101 Namur
                         </p>
@@ -495,7 +495,9 @@ export default function ContactPage() {
 
                         if (selectedFiles && selectedFiles.length > 0) {
                           const urls = await uploadFiles(selectedFiles);
-                          urls.forEach((url) => formDataToSend.append('photos[]', url));
+                          urls.forEach((url, index) => {
+                            formDataToSend.append(`photos[${index + 1}]`, url);
+                          });
                           setUploadedUrls(urls);
                         }
 
@@ -561,7 +563,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-800 uppercase tracking-wide">Description du probléme <span className="text-red-500">*</span></label>
+                      <label className="text-sm font-bold text-slate-800 uppercase tracking-wide">Description du problème <span className="text-red-500">*</span></label>
                       <textarea 
                         name="message"
                         value={formData.message}
@@ -573,7 +575,7 @@ export default function ContactPage() {
 
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-slate-800 uppercase tracking-wide flex items-center justify-between">
-                        <span>Photos du probléme (Optionnel)</span>
+                        <span>Photos du problème (Optionnel)</span>
                       </label>
                       <CloudinaryUploader onFilesChange={setSelectedFiles} />
                       {uploadingPhotos && (
@@ -581,7 +583,7 @@ export default function ContactPage() {
                       )}
                       {uploadedUrls.length > 0 && (
                         <p className="text-xs text-green-600 font-semibold">
-                          {uploadedUrls.length} photo(s) prétes é être envoyées.
+                          {uploadedUrls.length} photo(s) prêtes à être envoyées.
                         </p>
                       )}
                     </div>
@@ -601,7 +603,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* --- NOUVELLE SECTION: ENGAGEMENT QUALITé (APRéS FORMULAIRE) --- */}
+        {/* --- NOUVELLE SECTION: ENGAGEMENT QUALITÉ (APRÈS FORMULAIRE) --- */}
         <section className="py-20 bg-slate-900 text-white text-center">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-black mb-12 font-[Montserrat]">Notre engagement qualité</h2>
@@ -609,7 +611,7 @@ export default function ContactPage() {
               <div className="p-6 border border-slate-800 rounded-2xl bg-slate-800/50">
                 <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-black">1</div>
                 <h3 className="text-xl font-bold mb-3">Réponse Rapide</h3>
-                <p className="text-slate-400">Nous traitons votre demande dés réception et vous contactons dans les plus brefs délais.</p>
+                <p className="text-slate-400">Nous traitons votre demande dès réception et vous contactons dans les plus brefs délais.</p>
               </div>
               <div className="p-6 border border-slate-800 rounded-2xl bg-slate-800/50">
                 <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-black">2</div>
@@ -619,7 +621,7 @@ export default function ContactPage() {
               <div className="p-6 border border-slate-800 rounded-2xl bg-slate-800/50">
                 <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-black">3</div>
                 <h3 className="text-xl font-bold mb-3">Suivi Personnalisé</h3>
-                <p className="text-slate-400">Un interlocuteur unique suit votre dossier de la demande de devis jusqu'é la fin des travaux.</p>
+                <p className="text-slate-400">Un interlocuteur unique suit votre dossier de la demande de devis jusqu'à la fin des travaux.</p>
               </div>
             </div>
           </div>
@@ -634,7 +636,7 @@ export default function ContactPage() {
             {/* Col 1: À propos */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 rounded-full border-2 border-white shadow" />
+                <img src={BRAND.logoUrl} alt="Aqua&Deb" className="h-12 w-12 object-contain" />
                 <span className="text-white font-extrabold text-lg">Aqua&Deb</span>
               </div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">À propos de nous</h4>
@@ -652,21 +654,19 @@ export default function ContactPage() {
             <div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Nos services</h4>
               <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Services de plomberie', href: '/services/plomberie' },
-    { label: 'Services de débouchage', href: '/services/debouchage' },
-    { label: 'Dépannage plomberie', href: '/services/plomberie' },
-    { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
-    { label: 'Entretien plomberie', href: '/entretien' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
+                {[
+                  { label: 'Services de plomberie', href: '/services/plomberie' },
+                  { label: 'Services de débouchage', href: '/services/debouchage' },
+                  { label: 'Dépannage plomberie', href: '/services/plomberie' },
+                  { label: 'Rénovation plomberie', href: '/renovation-sanitaires' },
+                  { label: 'Entretien plomberie', href: '/entretien' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -674,23 +674,21 @@ export default function ContactPage() {
             <div>
               <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-wider border-b border-slate-800 pb-2 inline-block">Zones d'intervention</h4>
               <ul className="space-y-2 text-sm">
-                {
-  [
-    { label: 'Liége', href: '/zones/liege' },
-    { label: 'Namur', href: '/zones/namur' },
-    { label: 'Charleroi', href: '/zones/charleroi' },
-    { label: 'Mons', href: '/zones/mons' },
-    { label: 'Verviers', href: '/zones/verviers' },
-    { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
-    { label: 'Toutes les zones', href: '/zones' }
-  ].map(({ label, href }, i) => (
-    <li key={i}>
-      <a href={href} className='hover:text-white transition-colors'>
-        {label}
-      </a>
-    </li>
-  ))
-}
+                {[
+                  { label: 'Liège', href: '/zones/liege' },
+                  { label: 'Namur', href: '/zones/namur' },
+                  { label: 'Charleroi', href: '/zones/charleroi' },
+                  { label: 'Mons', href: '/zones/mons' },
+                  { label: 'Verviers', href: '/zones/verviers' },
+                  { label: 'Brabant wallon et flamand', href: '/zones/brabant-wallon-flamand' },
+                  { label: 'Toutes les zones', href: '/zones' }
+                ].map(({ label, href }, i) => (
+                  <li key={i}>
+                    <a href={href} className='hover:text-white transition-colors'>
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -747,17 +745,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

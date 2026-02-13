@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const BASE_URL = "https://www.aquadeb.be";
-const DEFAULT_IMAGE = "https://res.cloudinary.com/dw9jkwccj/image/upload/v1766673668/aquadeb_cgzzsg.png";
+const DEFAULT_IMAGE = "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png";
 
 const ensureTag = (selector, createFn, update) => {
   let el = document.head.querySelector(selector);
