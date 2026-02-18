@@ -88,6 +88,8 @@ const BRAND = {
   email: "aquadeb22@gmail.com",
   logoUrl: "https://res.cloudinary.com/dw9jkwccj/image/upload/v1770971614/t%C3%A9l%C3%A9chargement_7_f8jwmb.png"
 };
+const WHATSAPP_LINK = "https://wa.me/32493415283";
+const WHATSAPP_LOGO_URL = "https://res.cloudinary.com/dw9jkwccj/image/upload/v1771421136/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png_snohwm.webp";
 
 // --- DATA ---
 const NAV_LINKS = [
@@ -188,6 +190,23 @@ const SEOManager = () => {
   useSEO({ path: location.pathname, ...meta });
   return null;
 };
+
+const WhatsAppFloatingButton = () => (
+  <a
+    href={WHATSAPP_LINK}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contacter AquaDeb sur WhatsApp"
+    className="fixed right-4 bottom-24 md:bottom-6 z-[70] rounded-full bg-white p-2 shadow-[0_10px_25px_rgba(0,0,0,0.25)] hover:scale-105 transition-transform"
+  >
+    <img
+      src={WHATSAPP_LOGO_URL}
+      alt="WhatsApp AquaDeb"
+      className="w-14 h-14 md:w-16 md:h-16 object-contain"
+      loading="lazy"
+    />
+  </a>
+);
 
 // --- AI DIAGNOSTIC MODAL ---
 const AiDiagnosticModal = ({ isOpen, onClose, onPhoneClick }) => {
@@ -1388,6 +1407,7 @@ export default function App() {
         <Route path="/zones/brabant-wallon-flamand" element={<BrabantWallonFlamandPage />} />
         <Route path="/zones/bruxelles" element={<BruxellesPage />} />
       </Routes>
+      <WhatsAppFloatingButton />
     </Router>
   );
 }
