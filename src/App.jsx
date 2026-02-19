@@ -855,14 +855,18 @@ function HomePage() {
                 </div>
 
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight drop-shadow-2xl">
-                  STOP AUX <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">Dégâts.</span><br/>
-                  PLOMBIER D'URGENCE.
+                  Votre plombier :{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-orange-400">
+                    Local
+                  </span>
                 </h1>
-                
-                <p className="text-xl text-slate-300 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Fuite d'eau ? Canalisation bouchée ? Plus d'eau chaude ?<br/>
-                  <span className="text-white font-bold">Ne paniquez pas.</span> Nos experts interviennent immédiatement. Devis Gratuit. Prix Fixes.
-                </p>
+
+                <img
+                  src="https://res.cloudinary.com/dw9jkwccj/image/upload/v1771487558/fb0e873d-50b3-4306-9774-cd82a0f197dd_sa7zfl.jpg"
+                  alt="Intervention plomberie Aqua&Deb"
+                  className="w-full max-w-2xl mx-auto lg:mx-0 rounded-2xl border border-white/20 shadow-2xl object-cover"
+                  loading="eager"
+                />
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
                   <a 
